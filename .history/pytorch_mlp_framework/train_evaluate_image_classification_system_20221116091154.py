@@ -69,3 +69,6 @@ def main():
                                     test_data=test_data_loader)  # build an experiment object
     experiment_metrics, test_metrics = conv_experiment.run_experiment()  # run experiment and return experiment metrics
 
+
+if "__main__" == __name__:
+    main()
