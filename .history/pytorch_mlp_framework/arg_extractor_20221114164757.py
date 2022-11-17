@@ -49,4 +49,5 @@ def get_args():
                         help='Type of convolutional blocks to use in our network '
                              '(This argument will be useful in running experiments to debug your network)')
     args = parser.parse_args()
+    print(args)
     return args

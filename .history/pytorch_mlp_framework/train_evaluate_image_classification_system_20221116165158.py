@@ -4,16 +4,18 @@ from torch.utils.data import DataLoader
 from torchvision import transforms
 
 import mlp.data_providers as data_providers
+from pytorch_mlp_framework.arg_extractor import get_args
 from pytorch_mlp_framework.experiment_builder import ExperimentBuilder
 from pytorch_mlp_framework.model_architectures import *
 import os 
 # os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
-def mainmargs):
+def main():
 
-    # print all arguments with their values
-    rng = np.random.RandomState(seed=args.seed)  # set the seeds for the experiment
-    torch.manual_seed(seed=args.seed)  # sets pytorch's seed
+    args = get_args()  # get arguments from command line
+    print(args)
+#     rng = np.random.RandomState(seed=args.seed)  # set the seeds for the experiment
+#     torch.manual_seed(seed=args.seed)  # sets pytorch's seed
 
 # # set up data augmentation transforms for training and testing
 #     transform_train = transforms.Compose([

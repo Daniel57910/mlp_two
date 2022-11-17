@@ -1,15 +1,16 @@
-import numpy as np
-import torch
-from torch.utils.data import DataLoader
-from torchvision import transforms
+# import numpy as np
+# import torch
+# from torch.utils.data import DataLoader
+# from torchvision import transforms
 
-import mlp.data_providers as data_providers
-from pytorch_mlp_framework.experiment_builder import ExperimentBuilder
-from pytorch_mlp_framework.model_architectures import *
-import os 
+# import mlp.data_providers as data_providers
+from arg_extractor import get_args
+# from pytorch_mlp_framework.experiment_builder import ExperimentBuilder
+# from pytorch_mlp_framework.model_architectures import *
+# import os 
 # os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
-def mainmargs):
+def main(args):
 
     # print all arguments with their values
     rng = np.random.RandomState(seed=args.seed)  # set the seeds for the experiment

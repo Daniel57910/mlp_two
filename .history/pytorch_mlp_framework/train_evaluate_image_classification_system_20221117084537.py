@@ -9,7 +9,7 @@ from pytorch_mlp_framework.model_architectures import *
 import os 
 # os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
-def mainmargs):
+def main(args):
 
     # print all arguments with their values
     rng = np.random.RandomState(seed=args.seed)  # set the seeds for the experiment

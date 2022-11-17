@@ -149,11 +149,7 @@ class ExperimentBuilder(nn.Module):
         """
         all_grads = []
         layers = []
-
-        for n, p in named_parameters:
-            if (p.requires_grad) and ("bias" not in n):
-                layers.append(n)
-                all_grads.append(p.grad.abs().mean())
+        
         """
         Complete the code in the block below to collect absolute mean of the gradients for each layer in all_grads with the             layer names in layers.
         """
@@ -299,11 +295,11 @@ class ExperimentBuilder(nn.Module):
             ################################################################
             ##### Plot Gradient Flow at each Epoch during Training  ######
             print("Generating Gradient Flow Plot at epoch {}".format(epoch_idx))
-            gradient_plt = self.plot_grad_flow(self.model.named_parameters())
+            plt = self.plot_grad_flow(self.model.named_parameters())
             if not os.path.exists(os.path.join(self.experiment_saved_models, 'gradient_flow_plots')):
                 os.mkdir(os.path.join(self.experiment_saved_models, 'gradient_flow_plots'))
                 # plt.legend(loc="best")
-            # gradient_plt.savefig(os.path.join(self.experiment_saved_models, 'gradient_flow_plots', "epoch{}.pdf".format(str(epoch_idx))))
+            plt.savefig(os.path.join(self.experiment_saved_models, 'gradient_flow_plots', "epoch{}.pdf".format(str(epoch_idx))))
             ################################################################
         
         print("Generating test set evaluation metrics")
@@ -327,4 +323,4 @@ class ExperimentBuilder(nn.Module):
                         # save test set metrics on disk in .csv format
                         stats_dict=test_losses, current_epoch=0, continue_from_mode=False)
 
-        return total_losses, test_losses, gradient_plt
+        return total_losses, test_losses
