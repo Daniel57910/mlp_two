@@ -7,6 +7,7 @@ import mlp.data_providers as data_providers
 from pytorch_mlp_framework.arg_extractor import get_args
 from pytorch_mlp_framework.experiment_builder import ExperimentBuilder
 from pytorch_mlp_framework.model_architectures import *
+from pytorch_mlp_framework.model_architectures_dm import ConvolutionalProcessingBlockDM
 import os 
 # os.environ["CUDA_VISIBLE_DEVICES"]="0"
 
@@ -47,6 +48,9 @@ if args.block_type == 'conv_block':
 elif args.block_type == 'empty_block':
     processing_block_type = EmptyBlock
     dim_reduction_block_type = EmptyBlock
+elif args.block_type == 'dm_conv_block':
+    processing_block_type = ConvolutionalProcessingBlockDM
+    dim_reduction_block_type = ConvolutionalDimensionalityReductionBlock
 else:
     raise ModuleNotFoundError
 
