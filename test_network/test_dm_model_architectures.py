@@ -3,6 +3,7 @@ import torch
 from pytorch_mlp_framework.model_architectures_dm import (
     ConvolutionalProcessingBlockDM,
     ConvolutionalReductionBlockDM,
+    ResidualConnectionBlockDM
 
 )
 
@@ -86,3 +87,43 @@ def test_convolution_block_reduction():
 
     assert np.allclose(channel_means, np.mean(channel_means), atol=1e-2)
     assert np.allclose(channel_vars, np.mean(channel_vars), atol=1e-1)
+
+def test_residual_connection_implementation_same_channel_numbers():
+    output_filters = 6
+    stride=3
+    padding = 1
+    bias = True
+    dilation = 1
+    
+    sample_tensor = torch.randn(4, 6, 32, 32)
+    residual_block = ResidualConnectionBlockDM(
+        sample_tensor.shape,
+        output_filters,
+        stride,
+        padding,
+        bias,
+        dilation
+    )
+
+    out = residual_block(sample_tensor)
+    assert out.shape==(4, 6, 32, 32)
+
+def test_residual_connection_implementation_diff_channel_numbers():
+    output_filters = 6
+    stride=3
+    padding = 1
+    bias = True
+    dilation = 1
+    
+    sample_tensor = torch.randn(4, 3, 32, 32)
+    residual_block = ResidualConnectionBlockDM(
+        sample_tensor.shape,
+        output_filters,
+        stride,
+        padding,
+        bias,
+        dilation
+    )
+
+    out = residual_block(sample_tensor)
+    assert out.shape==(4, 6, 32, 32)
